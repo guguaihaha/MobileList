@@ -7,7 +7,7 @@
 (function( window, undefined ) {
       var html="";
       var mobileList = function(options){
-         return new mobileInit(options);
+         return mobileInit(options);
       }
       function mobileInit(options){
           this.default = {};
@@ -35,5 +35,7 @@
         }
         return child
     }
+
+     window.mobileList = mobileList;
 
 })( window );
