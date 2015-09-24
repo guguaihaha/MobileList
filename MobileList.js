@@ -6,17 +6,48 @@
  */
 (function( window, undefined ) {
       var html="";
-      var mobileList = function(options){
-         return mobileInit(options);
+      var mobileList = function(selector,options){
+         return new mobileInit(selector,options);
       }
-      function mobileInit(options){
-          this.default = {};
+      function mobileInit(selector,options){
+          this.selector = selector;
+          this.default = {
+                          destory:true,
+                          url:"",
+                          type:"get",
+                          theme:"ios"
+                          }
           this.options = extend(this.default,options);
-          //
-
-
-
+          return this;
       }
+      //
+       mobileInit.fn = mobileInit.prototype = {
+           show:function(){
+              var options = this.options,
+              selector = this.selector,
+              element = document.querySelector(selector);
+               if(!element){
+                   throw "No match element";
+                   return;
+               }
+              var n_element = element.children;
+              if(n_element.length>1){
+                  throw "Layout rules not match";
+                  return;
+              }
+              var c_elements = n_element[0].children;
+           },
+           hide:function(){
+              var options = this.options;
+
+           },
+           success:function(){
+
+           }
+       };
+      //
+      //
+
       function extend(p,c){
         var i,
             toStr = Object.prototype.toString,
